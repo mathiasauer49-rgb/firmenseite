@@ -1,0 +1,452 @@
+/* ==========================================================
+   Brunner Schreinerei – Beispiel-Firmenseite
+   Aufbau dieser Datei:
+   1. Variablen (Farben, Schriften)
+   2. Grundstil
+   3. Wiederverwendbare Bausteine (Knöpfe, Formularfelder)
+   4. Die einzelnen Bereiche der Seite
+   5. Anpassungen für grössere Bildschirme
+   ========================================================== */
+
+
+/* ---------- 1. Variablen ----------
+   Hier ändern Sie Farben und Schriften an EINER Stelle,
+   und die ganze Seite passt sich an. */
+:root {
+  --tanne: #1b2f2a;          /* dunkles Grün: Hero, Fusszeile, Knöpfe */
+  --tanne-hell: #2c4740;     /* Hover-Farbe */
+  --zollstock: #f2b705;      /* Gelb wie ein Zollstock: Akzentfarbe */
+  --grund: #f1f3f0;          /* Seitenhintergrund */
+  --grund-dunkler: #e5eae6;  /* abgesetzte Bereiche */
+  --text: #1a1f1d;
+  --text-leise: #56625c;     /* Beschreibungen */
+  --linie: #cdd4cf;
+  --fehler: #b3261e;
+
+  --schrift-kopf: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --schrift-text: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+
+/* ---------- 2. Grundstil ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Padding wird in die Breite eingerechnet: einfacher zu rechnen */
+}
+
+/* Sanftes Scrollen zu Ankern, aber nur, wenn der Nutzer Animationen nicht abgeschaltet hat */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--schrift-text);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--grund);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--schrift-kopf);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+/* Sichtbarer Fokusrahmen für Tastatur-Bedienung */
+:focus-visible {
+  outline: 3px solid var(--tanne);
+  outline-offset: 3px;
+}
+
+/* Auf dunklem Grund braucht der Rahmen eine helle Farbe */
+.hero :focus-visible,
+.fuss :focus-visible {
+  outline-color: var(--zollstock);
+}
+
+/* Mittige Inhaltsspalte: maximal 68rem breit, links und rechts mind. 1.25rem Rand */
+.behaelter {
+  width: min(100% - 2.5rem, 68rem);
+  margin-inline: auto;
+}
+
+/* Sprunglink: unsichtbar, bis man per Tab darauf landet */
+.sprunglink {
+  position: absolute;
+  top: 0;
+  left: -999px;
+  z-index: 10;
+  padding: 0.6rem 1rem;
+  background: var(--zollstock);
+  color: var(--tanne);
+  font-weight: 600;
+}
+
+.sprunglink:focus {
+  left: 0;
+}
+
+
+/* ---------- 3. Bausteine ---------- */
+
+/* Knöpfe: .knopf ist die Grundform, die Zusätze ändern nur die Farben */
+.knopf {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  border: 2px solid var(--zollstock);
+  border-radius: 4px;
+  background: var(--zollstock);
+  color: var(--tanne);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.knopf:hover {
+  background: #ffd03a;
+  border-color: #ffd03a;
+}
+
+/* Helle Umrandung für dunklen Hintergrund. Steht NACH .knopf:hover,
+   damit es bei gleicher Gewichtung gewinnt. */
+.knopf-hell {
+  background: transparent;
+  border-color: #8fa39a;
+  color: var(--grund);
+}
+
+.knopf-hell:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--grund);
+}
+
+/* Dunkler Knopf für hellen Hintergrund */
+.knopf-dunkel {
+  background: var(--tanne);
+  border-color: var(--tanne);
+  color: var(--grund);
+}
+
+.knopf-dunkel:hover {
+  background: var(--tanne-hell);
+  border-color: var(--tanne-hell);
+}
+
+.knopf-reihe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+/* Formularfelder */
+label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1.5px solid #7f8b84;
+  border-radius: 4px;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+}
+
+textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+/* Dieses Attribut setzt script.js, wenn ein Feld nicht stimmt */
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border-color: var(--fehler);
+}
+
+.feld {
+  margin-bottom: 1.25rem;
+}
+
+.fehler {
+  margin-top: 0.3rem;
+  color: var(--fehler);
+  font-size: 0.9rem;
+}
+
+.fehler:empty {
+  display: none; /* leere Fehlermeldung braucht keinen Platz */
+}
+
+.formular-status {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+
+/* ---------- 4. Bereiche der Seite ---------- */
+
+/* Kopfbereich */
+.kopf {
+  border-bottom: 1px solid var(--linie);
+}
+
+.kopf-innen {
+  display: flex;
+  flex-wrap: wrap;            /* auf schmalen Handys rutscht die Navigation unter das Logo */
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  padding-block: 1rem;
+}
+
+.logo {
+  font-family: var(--schrift-kopf);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav a {
+  padding-block: 0.25rem;
+  border-bottom: 2px solid transparent;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  border-bottom-color: var(--zollstock);
+}
+
+/* Hero */
+.hero {
+  padding-top: clamp(3rem, 9vw, 6.5rem);
+  background: var(--tanne);
+  color: var(--grund);
+}
+
+.hero h1 {
+  max-width: 15ch;
+  font-size: clamp(2.5rem, 8vw, 5.25rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+
+.hero p {
+  max-width: 36rem;
+  margin-top: 1.5rem;
+  color: #d5ddd8;
+  font-size: 1.2rem;
+}
+
+/* Der Massstab: ein gelber Streifen, auf den zwei Muster aus dünnen
+   Linien gezeichnet werden (kleine Striche alle 16px, grosse alle 80px). */
+.massstab {
+  height: 2.75rem;
+  margin-top: clamp(3rem, 8vw, 5.5rem);
+  background-color: var(--zollstock);
+  background-image:
+    repeating-linear-gradient(90deg, var(--tanne) 0 2px, transparent 2px 80px),
+    repeating-linear-gradient(90deg, var(--tanne) 0 1px, transparent 1px 16px);
+  background-size: 100% 1.5rem, 100% 0.9rem; /* Höhe der grossen bzw. kleinen Striche */
+  background-repeat: no-repeat;
+}
+
+/* Allgemeiner Abschnitt: sorgt für Abstand oben und unten */
+.abschnitt {
+  padding-block: clamp(3rem, 8vw, 5.5rem);
+}
+
+.abschnitt-hell {
+  background: var(--grund-dunkler);
+}
+
+.abschnitt h2 {
+  max-width: 22ch;
+  margin-bottom: 2.5rem;
+  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+}
+
+/* Leistungen: Zeilen mit Trennlinien statt Kästchen */
+.leistungen {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--linie);
+  list-style: none;
+}
+
+.leistungen li {
+  display: grid;
+  gap: 0.5rem 3rem;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--linie);
+}
+
+.leistungen h3 {
+  font-size: 1.35rem;
+}
+
+.leistungen p {
+  max-width: 40rem;
+  color: var(--text-leise);
+}
+
+/* Ablauf */
+.schritte {
+  display: grid;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: schritt;     /* CSS zählt die Schritte automatisch */
+}
+
+.schritte li {
+  padding-top: 1rem;
+  border-top: 4px solid var(--zollstock);
+  counter-increment: schritt;
+}
+
+.schritte li::before {
+  content: counter(schritt);
+  display: block;
+  margin-bottom: 0.75rem;
+  font-family: var(--schrift-kopf);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.schritte h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.schritte p {
+  color: var(--text-leise);
+}
+
+/* Über uns */
+.ueber {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.ueber-text {
+  max-width: 38rem;
+}
+
+.ueber-text p + p {
+  margin-top: 1rem;
+}
+
+.fakten {
+  margin: 0;
+  border-bottom: 1px solid var(--linie);
+}
+
+.fakten div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.9rem;
+  border-top: 1px solid var(--linie);
+}
+
+.fakten dt {
+  color: var(--text-leise);
+}
+
+.fakten dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* Kontakt */
+.kontakt {
+  display: grid;
+  gap: 3rem;
+}
+
+.adresse {
+  font-style: normal;         /* <address> ist sonst standardmässig kursiv */
+}
+
+.adresse p + p {
+  margin-top: 1.25rem;
+}
+
+/* Fusszeile */
+.fuss {
+  padding-block: 2rem;
+  background: var(--tanne);
+  color: #c9d3cd;
+  font-size: 0.95rem;
+}
+
+.fuss-innen {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+}
+
+
+/* ---------- 5. Ab Tablet-Breite (768px) ----------
+   Die Seite ist "Mobile first" gebaut: Oben steht der Stil fürs Handy,
+   hier kommen nur die Änderungen für breitere Bildschirme dazu. */
+@media (min-width: 48rem) {
+  .leistungen li {
+    grid-template-columns: 1fr 2fr;   /* Titel links, Text rechts */
+  }
+
+  .schritte {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .ueber {
+    grid-template-columns: 3fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .kontakt {
+    grid-template-columns: 3fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+}

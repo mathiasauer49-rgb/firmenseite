@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8">
+  <!-- Wichtig für Handys: Seite an die Bildschirmbreite anpassen -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Brunner Schreinerei – Möbel und Innenausbau in Bern</title>
+  <meta name="description" content="Küchen, Einbauschränke und Möbel nach Mass. Familienbetrieb in Bern seit 1987.">
+
+  <!-- Schriften von Google Fonts (ohne Internet greift die Ersatzschrift aus style.css) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Public+Sans:wght@400..600&display=swap" rel="stylesheet">
+
+  <!-- Unser eigenes Design und unser JavaScript -->
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <!-- Für Tastatur-Nutzer: springt direkt zum Inhalt -->
+  <a class="sprunglink" href="#inhalt">Zum Inhalt springen</a>
+
+  <!-- ============ KOPFBEREICH MIT NAVIGATION ============ -->
+  <header class="kopf">
+    <div class="behaelter kopf-innen">
+      <a class="logo" href="#top">Brunner Schreinerei</a>
+      <nav aria-label="Hauptnavigation">
+        <ul class="nav">
+          <li><a href="#leistungen">Leistungen</a></li>
+          <li><a href="#ablauf">Ablauf</a></li>
+          <li><a href="#ueber-uns">Über uns</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inhalt">
+
+    <!-- ============ HERO: das Erste, was Besucher sehen ============ -->
+    <section class="hero" id="top">
+      <div class="behaelter">
+        <h1>Möbel, die bleiben. Gebaut in Bern.</h1>
+        <p>Wir planen und fertigen Küchen, Einbauschränke und Möbel nach Mass, aus Holz aus Schweizer Wäldern.</p>
+        <div class="knopf-reihe">
+          <a class="knopf" href="#kontakt">Offerte anfragen</a>
+          <a class="knopf knopf-hell" href="#leistungen">Leistungen ansehen</a>
+        </div>
+      </div>
+      <!-- Der gelbe Massstab ist reines CSS (siehe .massstab in style.css) -->
+      <div class="massstab" aria-hidden="true"></div>
+    </section>
+
+    <!-- ============ LEISTUNGEN ============ -->
+    <section class="abschnitt" id="leistungen">
+      <div class="behaelter">
+        <h2>Was wir für Sie bauen</h2>
+        <ul class="leistungen">
+          <li>
+            <h3>Küchen nach Mass</h3>
+            <p>Vom ersten Entwurf bis zum Einbau. Fronten aus Massivholz oder Furnier, Arbeitsplatten aus Holz, Stein oder Keramik.</p>
+          </li>
+          <li>
+            <h3>Einbauschränke</h3>
+            <p>Schränke und Garderoben, die jede Nische, Dachschräge und Wand ausnutzen.</p>
+          </li>
+          <li>
+            <h3>Möbel</h3>
+            <p>Tische, Betten, Regale und Sideboards, als Einzelstück oder in kleiner Serie.</p>
+          </li>
+          <li>
+            <h3>Treppen und Innenausbau</h3>
+            <p>Treppen, Türen sowie Wand- und Deckenverkleidungen aus Holz.</p>
+          </li>
+          <li>
+            <h3>Reparatur und Auffrischung</h3>
+            <p>Wir überarbeiten Möbel, Fenster und Böden, damit sie noch Jahrzehnte halten.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ ABLAUF (echte Reihenfolge, darum nummeriert) ============ -->
+    <section class="abschnitt abschnitt-hell" id="ablauf">
+      <div class="behaelter">
+        <h2>So läuft ein Auftrag ab</h2>
+        <ol class="schritte">
+          <li>
+            <h3>Beratung</h3>
+            <p>Wir besuchen Sie, messen aus und klären Wünsche und Budget.</p>
+          </li>
+          <li>
+            <h3>Offerte</h3>
+            <p>Sie erhalten Entwurf und Festpreis, in der Regel innert einer Woche.</p>
+          </li>
+          <li>
+            <h3>Fertigung</h3>
+            <p>Wir bauen Ihr Stück in unserer Werkstatt in Bern.</p>
+          </li>
+          <li>
+            <h3>Montage</h3>
+            <p>Wir liefern, montieren, richten ein und räumen auf.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ ÜBER UNS ============ -->
+    <section class="abschnitt" id="ueber-uns">
+      <div class="behaelter">
+        <h2>Ein Familienbetrieb mit Handschlag-Qualität</h2>
+        <div class="ueber">
+          <div class="ueber-text">
+            <p>Die Schreinerei Brunner gibt es seit 1987. Was als Ein-Mann-Werkstatt im Keller begann, ist heute ein Team von zwölf Personen.</p>
+            <p>Wir verarbeiten Holz aus der Region und bilden Lernende aus. Wer bei uns bestellt, spricht von der Beratung bis zur Montage mit denselben Leuten.</p>
+          </div>
+          <!-- dl = Liste aus Begriff (dt) und Beschreibung (dd) -->
+          <dl class="fakten">
+            <div><dt>Gegründet</dt><dd>1987</dd></div>
+            <div><dt>Team</dt><dd>12 Personen</dd></div>
+            <div><dt>Lernende</dt><dd>3 pro Jahr</dd></div>
+            <div><dt>Holz</dt><dd>aus Schweizer Wäldern</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ KONTAKT ============ -->
+    <section class="abschnitt abschnitt-hell" id="kontakt">
+      <div class="behaelter">
+        <h2>Erzählen Sie uns von Ihrem Vorhaben</h2>
+        <div class="kontakt">
+
+          <!-- novalidate: Die Prüfung übernimmt unser JavaScript (script.js) -->
+          <form id="kontaktformular" novalidate>
+            <div class="feld">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" autocomplete="name" aria-describedby="name-fehler" required>
+              <p class="fehler" id="name-fehler"></p>
+            </div>
+            <div class="feld">
+              <label for="email">E-Mail</label>
+              <input type="email" id="email" name="email" autocomplete="email" aria-describedby="email-fehler" required>
+              <p class="fehler" id="email-fehler"></p>
+            </div>
+            <div class="feld">
+              <label for="nachricht">Ihre Nachricht</label>
+              <textarea id="nachricht" name="nachricht" aria-describedby="nachricht-fehler" required></textarea>
+              <p class="fehler" id="nachricht-fehler"></p>
+            </div>
+            <button class="knopf knopf-dunkel" type="submit">Anfrage senden</button>
+            <p class="formular-status" id="formular-status" role="status"></p>
+          </form>
+
+          <address class="adresse">
+            <p><strong>Brunner Schreinerei AG</strong><br>
+              Musterweg 12<br>
+              3000 Bern</p>
+            <p>Telefon: <a href="tel:+41315550123">031 555 01 23</a><br>
+              E-Mail: <a href="mailto:info@beispiel-schreinerei.example">info@beispiel-schreinerei.example</a></p>
+            <p>Werkstatt und Ausstellung<br>
+              Montag bis Freitag, 7.30 bis 17.00 Uhr</p>
+          </address>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FUSSZEILE ============ -->
+  <footer class="fuss">
+    <div class="behaelter fuss-innen">
+      <p>© <span id="jahr">2026</span> Brunner Schreinerei AG</p>
+      <p>Beispielseite: Firma und alle Angaben sind frei erfunden.</p>
+    </div>
+  </footer>
+</body>
+</html>
